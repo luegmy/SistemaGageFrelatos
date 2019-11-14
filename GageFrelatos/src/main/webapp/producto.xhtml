@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Insert title here</title>
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+</h:head>
+<h:body>
+	<div class="container-fluid">
+		<h:form id="formProducto">
+			<p:dataTable var="t" value="#{productoBean.productos}" id="temporal"
+				editable="true" editMode="cell">
+				<p:ajax event="cellEdit" listener="#{productoBean.editarCelda}"/>
+
+				<p:column headerText="DESCRIPCION">
+					<h:outputText value="#{t.descripcion}" />
+				</p:column>
+				<p:column headerText="SABOR">
+				<h:outputText value="#{t.descripcion}" />
+					<p:commandLink value="Sabores"/>
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+	</div>
+</h:body>
+</html>

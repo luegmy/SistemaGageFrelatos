@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="frelatos"
+		transaction-type="RESOURCE_LOCAL">
+
+		<class>com.frelatos.entidad.Producto</class>
+		<class>com.frelatos.entidad.Categoria</class>
+		<class>com.frelatos.entidad.Sabor</class>
+		<class>com.frelatos.entidad.Venta</class>
+		<class>com.frelatos.entidad.DetalleVenta</class>
+		<class>com.frelatos.entidad.DetalleVentaPK</class>
+
+
+		<properties>
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/bd_heladeria" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password"
+				value="admin" />
+			<property name="eclipselink.logging.level" value="FINE" />
+		</properties>
+
+
+	</persistence-unit>
+</persistence>
