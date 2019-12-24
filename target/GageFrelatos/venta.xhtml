@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/plantilla/plantillaBasica.xhtml">
+	<ui:define name="content">
+		<div class="container-fluid">
+			<h:form id="formVenta">
+
+				<div class="row vertical-container">
+					<div class="col-4">
+						<p:dataGrid var="car" value="#{ventaBean.productos}" columns="2"
+							layout="grid">
+							<p:commandLink value="#{car.descripcion}"
+								actionListener="#{ventaBean.agregarVenta}"
+								update="formVenta:temporal formVenta:pnlImporte"
+								styleClass="btn btn-primary btn-block text-left">
+								<f:attribute value="#{car.codProducto}" name="codigo" />
+							</p:commandLink>
+						</p:dataGrid>
+					</div>
+					<div class="col-8">
+						<p:dataTable var="t" value="#{ventaBean.temporales}" id="temporal"
+							rowIndexVar="item">
+							<p:column headerText="ITEM" width="10%">
+								<h:outputText value="#{item+1}" />
+							</p:column>
+
+							<p:column headerText="DESCRIPCION">
+								<h:outputText value="#{t.descripcionProducto}" />
+							</p:column>
+							<p:column headerText="PRECIO" width="15%">
+								<h:outputText value="#{t.precio}" />
+							</p:column>
+							<p:column headerText="SABOR 1">
+								<p:commandLink value="--#{t.sabor1}"
+									oncomplete="PF('dlgSabor').show();"
+									actionListener="#{ventaBean.obtenerIndice}">
+									<f:param name="item" value="#{item}" />
+								</p:commandLink>
+							</p:column>
+							<p:column headerText="SABOR 2">
+								<p:commandLink value="--#{t.sabor2}"
+									oncomplete="PF('dlgSabor2').show();"
+									actionListener="#{ventaBean.obtenerIndice}">
+									<f:param name="item" value="#{item}" />
+								</p:commandLink>
+							</p:column>
+							<p:column width="8%">
+								<p:commandLink
+									actionListener="#{ventaBean.quitarListaProductoVenta}"
+									styleClass="btn btn-link btn-sm" title="Quitar"
+									update="formVenta:temporal formVenta:pnlImporte">
+									<i class="fa fa-fw fa-times"></i>
+									<f:param name="item" value="#{item}" />
+								</p:commandLink>
+							</p:column>
+						</p:dataTable>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col"></div>
+					<div class="col-3">
+						<p:panelGrid columns="2" id="pnlImporte" layout="grid">
+							<p:outputLabel value="Subtotal" styleClass="text-uppercase"/>
+							<p:outputLabel value="#{ventaBean.subtotal}" styleClass="">
+							</p:outputLabel>
+							<p:outputLabel value="IGV" />
+							<p:outputLabel value="#{ventaBean.igv}">
+							</p:outputLabel>
+							<p:outputLabel value="Total" styleClass="text-uppercase"/>
+							<p:outputLabel value="#{ventaBean.total}">
+							</p:outputLabel>
+						</p:panelGrid>
+					</div>
+
+				</div>
+
+				<p:dialog header="LISTA DE SABORES" widgetVar="dlgSabor"
+					showEffect="scale" position="left top" hideEffect="explode"
+					responsive="true" positionType="absolute" modal="true" width="600"
+					appendTo="@(body)" closable="false">
+					<p:dataGrid var="sab" value="#{ventaBean.sabores}" columns="4"
+						layout="grid">
+						<p:commandLink value="#{sab.descripcion}"
+							styleClass="btn btn-outline-light btn-block text-left"
+							actionListener="#{ventaBean.agregarSabor}"
+							update="formVenta:temporal" onclick="PF('dlgSabor').hide();">
+							<f:attribute value="#{sab.codSabor}" name="codigo" />
+						</p:commandLink>
+
+					</p:dataGrid>
+				</p:dialog>
+				<p:dialog header="LISTA DE SABORES" widgetVar="dlgSabor2"
+					showEffect="scale" position="left top" hideEffect="explode"
+					responsive="true" positionType="absolute" modal="true" width="600"
+					appendTo="@(body)" closable="false">
+					<p:dataGrid var="sab" value="#{ventaBean.sabores}" columns="4"
+						layout="grid">
+
+						<p:commandLink value="#{sab.descripcion}"
+							styleClass="btn btn-outline-light btn-block text-left"
+							actionListener="#{ventaBean.agregarSabor2}"
+							update="formVenta:temporal" onclick="PF('dlgSabor2').hide();">
+							<f:attribute value="#{sab.codSabor}" name="codigo" />
+						</p:commandLink>
+
+					</p:dataGrid>
+				</p:dialog>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

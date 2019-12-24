@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<link rel="stylesheet" type="text/css" href="css/estilos.css" />
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title><ui:insert name="title"></ui:insert></title>
+
+</h:head>
+
+<h:body onload="nobackbutton()">
+	<div id="layout" class="container-fluid">
+		<div id="header">
+			<ui:include src="/WEB-INF/plantilla/cabecera.xhtml" />
+		</div>
+		<div id="content" class="bg-dark">
+		<div class="row" >
+			<div class="col-2">	<ui:include src="/WEB-INF/plantilla/menu.xhtml" /></div>
+			<div class="col"><ui:insert name="content" /></div>
+		</div>
+			
+		</div>
+
+		<div id="footer" class="bg-primary text-center text-white">
+			<ui:include src="/WEB-INF/plantilla/pie.xhtml" />
+		</div>
+	</div>
+	<script type="text/javascript">
+		function nobackbutton() {
+			window.location.hash = "no-back-button";
+			window.location.hash = "Again-No-back-button" //chrome
+			window.onhashchange = function() {
+				window.location.hash = "no-back-button";
+			}
+
+		}
+	</script>
+</h:body>
+
+</html>

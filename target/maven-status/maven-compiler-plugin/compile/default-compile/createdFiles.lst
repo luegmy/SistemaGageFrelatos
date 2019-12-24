@@ -1,0 +1,13 @@
+com\frelatos\dao\VentaDAO.class
+com\frelatos\bean\ProductoBean.class
+com\frelatos\dao\ProductoDAO.class
+com\frelatos\entidad\Sabor.class
+com\frelatos\dao\CategoriaDAO.class
+com\frelatos\dao\SaborDAO.class
+com\frelatos\dao\JpaUtil.class
+com\frelatos\entidad\Producto.class
+com\frelatos\entidad\DetalleVentaPK.class
+com\frelatos\bean\VentaBean.class
+com\frelatos\entidad\Venta.class
+com\frelatos\entidad\Categoria.class
+com\frelatos\entidad\DetalleVenta.class

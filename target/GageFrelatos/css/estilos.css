@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+.container-login {
+	margin: 0 auto;
+	margin-top: 280px;
+	margin-left:100px;
+	padding: 0;
+}
+
+/* layout */
+
+.ui-layout-north {
+	background: #17a2b8;
+}
+
+.ui-layout-pane-north .ui-layout-unit-content {
+	background: #17a2b8;
+}
+
+/* menu */
+.ui-panelmenu .ui-panelmenu-header {
+	font-size: 14px;
+}
+
+.ui-panelmenu .ui-menuitem {
+	font-size: 14px;
+}
+
+.ui-widget-header {
+	font-size: 14px;
+}
+
+/*  */
+.pie {
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.container-fluid {
+	font-size: 14px;
+}
+
+.container-fluid legend {
+	font-size: 14px;
+	text-align: center;
+}
+
+.container-fluid .d-flex {
+	font-size: 14px;
+}
+
+.ui-dialog {
+	font-size: 14px;
+}
+
+ .vertical-container {
+        margin: 0;
+        height: 420px;
+        overflow: auto;
+    }
+
