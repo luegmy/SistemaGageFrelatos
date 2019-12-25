@@ -5,7 +5,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-	<link rel="stylesheet" type="text/javascript" href="js/calendario.js" />
 	<link rel="stylesheet" type="text/css" href="css/estilos.css" />
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -16,33 +15,22 @@
 </h:head>
 
 <h:body onload="nobackbutton()">
-
-	<p:layout fullPage="true">
-		<p:layoutUnit position="north" gutter="0" style="border:0;">
+	<div id="layout" class="container-fluid">
+		<div id="header">
 			<ui:include src="/WEB-INF/plantilla/cabecera.xhtml" />
-		</p:layoutUnit>
-		<p:layoutUnit position="south" size="30" gutter="0" style="border:0;"
-			footer="Creado por GAGE 2019 &copy; - Correo:luegmy@gmail.com"
-			styleClass="pie" />
-		<p:layoutUnit position="center" gutter="0" style="border:0;">
-			<ui:insert name="content" />
-		</p:layoutUnit>
+		</div>
+		<div id="content" class="bg-dark">
+		<div class="row" >
+			<div class="col-2">	<ui:include src="/WEB-INF/plantilla/menu.xhtml" /></div>
+			<div class="col"><ui:insert name="content" /></div>
+		</div>
+			
+		</div>
 
-	</p:layout>
-
-
-	<p:idleMonitor timeout="#{session.maxInactiveInterval*1000}"
-		onidle="PF('expire').show();">
-	</p:idleMonitor>
-
-	<p:dialog header="SESION EXPIRADA" widgetVar="expire" modal="true"
-		fixedCenter="true" closable="false" width="800" visible="false">
-		<h:outputText value="Su tiempo ha expirado, click en el boton" />
-		<br></br>
-		<p:commandButton value="Iniciar sesion"
-			onclick="window.location='#{facesContext.externalContext.requestContextPath}/login.xhtml';" />
-	</p:dialog>
-
+		<div id="footer" class="bg-primary text-center text-white">
+			<ui:include src="/WEB-INF/plantilla/pie.xhtml" />
+		</div>
+	</div>
 	<script type="text/javascript">
 		function nobackbutton() {
 			window.location.hash = "no-back-button";

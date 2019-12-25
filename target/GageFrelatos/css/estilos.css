@@ -1,53 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-
 .container-login {
 	margin: 0 auto;
 	margin-top: 280px;
-	margin-left:100px;
+	margin-left: 100px;
 	padding: 0;
 }
 
 /* layout */
-
-.ui-layout-north {
-	background: #17a2b8;
-}
-
-.ui-layout-pane-north .ui-layout-unit-content {
-	background: #17a2b8;
-}
-
-/* menu */
-.ui-panelmenu .ui-panelmenu-header {
-	font-size: 14px;
-}
-
-.ui-panelmenu .ui-menuitem {
-	font-size: 14px;
-}
-
-.ui-widget-header {
-	font-size: 14px;
-}
-
-/*  */
-.pie {
-	font-size: 12px;
-	font-weight: bold;
-	text-align: center;
+.cabecera {
+	background: #e91e63;
 }
 
 .container-fluid {
-	font-size: 14px;
-}
-
-.container-fluid legend {
-	font-size: 14px;
-	text-align: center;
-}
-
-.container-fluid .d-flex {
 	font-size: 14px;
 }
 
@@ -55,9 +20,51 @@
 	font-size: 14px;
 }
 
- .vertical-container {
-        margin: 0;
-        height: 420px;
-        overflow: auto;
-    }
+.vertical-derecho {
+	margin: 0;
+	height: 500px;
+	overflow: auto;
+}
 
+.vertical-izquierdo {
+	margin: 0;
+	height: 300px;
+	overflow: auto;
+}
+
+.total {
+	color: #e91e63;
+	font-size: 28px;
+}
+
+.precio {
+	color: #e91e63;
+	text-align: center;
+}
+
+.no-gutter [class^="col"] {
+	padding: 0;
+}
+
+.ui-datatable * {
+	border: 0px !important;
+	text-align: center;
+}
+
+
+.ui-datagrid * {
+	border: 0px !important;
+}
+
+.lista {
+	background: #00b8d4;
+}
+
+td {
+	background: #2E2E2E;
+	color: #e91e63;
+}
+
+.ui-panelgrid * {
+	border: 0px !important;
+}

@@ -25,7 +25,6 @@ import org.primefaces.model.UploadedFile;
 
 import com.frelatos.dao.ProductoDAO;
 import com.frelatos.entidad.Producto;
-import com.mysql.fabric.xmlrpc.base.Value;
 
 /**
  * @author PC-LENOVO

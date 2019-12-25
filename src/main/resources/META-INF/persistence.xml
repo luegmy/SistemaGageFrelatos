@@ -16,12 +16,12 @@
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
-				value="com.mysql.jdbc.Driver" />
+				value="org.postgresql.Driver" />
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/bd_heladeria" />
-			<property name="javax.persistence.jdbc.user" value="root" />
+				value="jdbc:postgresql://localhost:5432/bd_frelatos" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
 			<property name="javax.persistence.jdbc.password"
-				value="admin" />
+				value="gage2505" />
 			<property name="eclipselink.logging.level" value="FINE" />
 		</properties>
 
