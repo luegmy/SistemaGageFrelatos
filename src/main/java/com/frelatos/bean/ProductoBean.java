@@ -1,26 +1,15 @@
 package com.frelatos.bean;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.CellEditEvent;
-import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
 import com.frelatos.dao.ProductoDAO;
@@ -38,8 +27,6 @@ public class ProductoBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private String destination = "/tmp/";
 
 	// Formulario buscar
 	private String descripcionProducto = "";
