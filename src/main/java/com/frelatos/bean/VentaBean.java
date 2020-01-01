@@ -3,6 +3,7 @@ package com.frelatos.bean;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -11,15 +12,20 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import com.frelatos.dao.ProductoDAO;
 import com.frelatos.dao.SaborDAO;
+import com.frelatos.dao.VentaDAO;
+import com.frelatos.entidad.Cliente;
 import com.frelatos.entidad.DetalleVenta;
+import com.frelatos.entidad.DetalleVentaPK;
 import com.frelatos.entidad.Producto;
 import com.frelatos.entidad.Sabor;
+import com.frelatos.entidad.Venta;
 
 @ManagedBean
 @SessionScoped
@@ -33,40 +39,69 @@ public class VentaBean implements Serializable {
 	private List<Producto> productos;
 	private List<DetalleVenta> temporales;
 	private List<Sabor> sabores;
-	private DetalleVenta detalleSeleccionado;
 	private int indice;
 	private BigDecimal igv = new java.math.BigDecimal("0.00");
 	private BigDecimal subtotal = new java.math.BigDecimal("0.00");
 	private BigDecimal total = new java.math.BigDecimal("0.00");
+	private BigDecimal monto = new java.math.BigDecimal("0.00");
+	private BigDecimal vuelto = new java.math.BigDecimal("0.00");
 	private String cliente = "";
 	private Date fecha = new Date();
+	private int codigoCliente = 1;
+	
+	@ManagedProperty(value = "#{usuario.sesionCodigoUsuario}")
+	private int usuario;
 
 	ProductoDAO daoP = new ProductoDAO();
 	SaborDAO daoS = new SaborDAO();
+	VentaDAO daoV = new VentaDAO();
 
 	public VentaBean() {
 		temporales = new ArrayList<DetalleVenta>();
 	}
 
 	int index = 0;
-
+	
+	int retornaNumeroVenta(){
+		int numero=daoV.listarVenta().stream().mapToInt(v->v.getNumVenta()).max().orElse(0)+1;
+		return numero;
+	}
+	
 	public void agregarVenta(ActionEvent e) {
 		int codigo = (int) e.getComponent().getAttributes().get("codigo");
 		Producto objP = daoP.buscarProductoPorCodigo(codigo);
+		DetalleVentaPK pk = new DetalleVentaPK();
+		pk.setCodProducto(objP.getCodProducto());
+		pk.setNumVenta(retornaNumeroVenta());
 		DetalleVenta objD = new DetalleVenta();
-		objD.setCodigoProducto(objP.getCodProducto());
+		
 		objD.setDescripcionProducto(objP.getDescripcion());
+		objD.setCantidad(new BigDecimal("1"));
 		objD.setPrecio(objP.getPrecio());
 		objD.setSabor1("");
 		objD.setSabor2("");
 		index++;
 		objD.setIndex(index);
+		objD.setId(pk);
 		temporales.add(objD);
 		iterarLista();
 	}
-	
+
 	public void grabarVenta() {
-		
+		// formato para registrar la hora
+		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+
+		Cliente objCliente = new Cliente();
+		objCliente.setCodCliente(codigoCliente);
+
+		Venta objVenta = new Venta();
+		objVenta.setCliente(objCliente);
+		objVenta.setFecha(fecha);
+		objVenta.setHora(sdf.format(new java.util.Date()));
+		objVenta.setTotal(total);
+		objVenta.setDetalles(temporales);
+
+		daoV.registrarVenta(objVenta);
 	}
 
 	void iterarLista() {
@@ -102,7 +137,7 @@ public class VentaBean implements Serializable {
 		setIgv(getTotal().subtract(getSubtotal()));
 
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public void obtenerIndice() {
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -153,14 +188,6 @@ public class VentaBean implements Serializable {
 		this.temporales = temporales;
 	}
 
-	public DetalleVenta getDetalleSeleccionado() {
-		return detalleSeleccionado;
-	}
-
-	public void setDetalleSeleccionado(DetalleVenta detalleSeleccionado) {
-		this.detalleSeleccionado = detalleSeleccionado;
-	}
-
 	public int getIndice() {
 		return indice;
 	}
@@ -193,6 +220,22 @@ public class VentaBean implements Serializable {
 		this.total = total;
 	}
 
+	public BigDecimal getMonto() {
+		return monto;
+	}
+
+	public void setMonto(BigDecimal monto) {
+		this.monto = monto;
+	}
+
+	public BigDecimal getVuelto() {
+		return vuelto;
+	}
+
+	public void setVuelto(BigDecimal vuelto) {
+		this.vuelto = vuelto;
+	}
+
 	public String getCliente() {
 		return cliente;
 	}
@@ -208,5 +251,23 @@ public class VentaBean implements Serializable {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
+
+	public int getCodigoCliente() {
+		return codigoCliente;
+	}
+
+	public void setCodigoCliente(int codigoCliente) {
+		this.codigoCliente = codigoCliente;
+	}
+
+	public int getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(int usuario) {
+		this.usuario = usuario;
+	}
+	
+	
 
 }

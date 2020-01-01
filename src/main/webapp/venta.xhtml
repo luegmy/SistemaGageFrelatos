@@ -3,8 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	lang="es">
+	xmlns:p="http://primefaces.org/ui" lang="es">
 <ui:composition template="/WEB-INF/plantilla/plantillaBasica.xhtml">
 	<ui:define name="content">
 		<div class="container-fluid">
@@ -28,21 +27,52 @@
 						<div class="row no-gutter bg-dark">
 							<div class="col">
 								<div class="btn-group">
-									<p:commandLink value="Cobrar"
-										styleClass="btn btn-success btn-link btn-lg"></p:commandLink>
-									<p:commandLink value="Cancelar"
-										styleClass="btn btn-success btn-link btn-lg"></p:commandLink>
-									<p:commandLink value="Cancelar"
-										styleClass="btn btn-success btn-link btn-lg"></p:commandLink>
+									<h:inputHidden value="#{ventaBean.codigoCliente}" />
 									<p:inputText value="#{ventaBean.cliente}"
 										placeholder="Ingrese el cliente" />
+									<p:commandLink value="Cobrar" action="#{ventaBean.grabarVenta}"
+										update="formVenta"
+										styleClass="btn btn-success btn-link btn-lg" />
+								</div>
+							</div>
+						</div>
+						<div class="row no-gutter bg-dark">
+							<div class="col-4">
+
+								<p:commandLink value="S/. 10.00"
+									action="#{ventaBean.grabarVenta}" update="formVenta"
+									styleClass="btn  btn-success btn-link btn-lg btn-block" />
+							</div>
+							<div class="col-4">
+								<p:commandLink value="S/. 20.00"
+									action="#{ventaBean.grabarVenta}" update="formVenta"
+									styleClass="btn btn-success btn-link btn-lg btn-block" />
+							</div>
+							<div class="col-4">
+								<p:commandLink value="S/. 30.00"
+									action="#{ventaBean.grabarVenta}" update="formVenta"
+									styleClass="btn btn-success btn-link btn-lg" />
+							</div>
+						</div>
+						<div class="row no-gutter bg-dark">
+							<div class="col">
+								<div class="btn-group">
+									<p:commandLink value="S/. 50.00"
+										action="#{ventaBean.grabarVenta}" update="formVenta"
+										styleClass="btn btn-success btn-link btn-lg" />
+									<p:commandLink value="S/. 100.00"
+										action="#{ventaBean.grabarVenta}" update="formVenta"
+										styleClass="btn btn-success btn-link btn-lg" />
+									<p:commandLink value="S/. 200.00"
+										action="#{ventaBean.grabarVenta}" update="formVenta"
+										styleClass="btn btn-success btn-link btn-lg" />
 								</div>
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="col-8">
-						<div class="row  vertical-derecho no-gutter">
+						<div class="row vertical-derecho no-gutter">
 							<div class="col">
 								<p:dataTable var="t" value="#{ventaBean.temporales}"
 									id="temporal" rowIndexVar="item" emptyMessage="">
@@ -83,12 +113,12 @@
 							</div>
 						</div>
 						<div class="row no-gutter">
-							<div class="col offset-7">
+							<div class="col">
 								<p:panelGrid columns="2" id="pnlImporte" layout="grid">
+
 									<h:outputLabel value="TOTAL" styleClass="total" />
 									<h:outputLabel value="#{ventaBean.total}" styleClass="total" />
 								</p:panelGrid>
-
 							</div>
 						</div>
 					</div>

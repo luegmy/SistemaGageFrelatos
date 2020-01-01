@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui" lang="es">
+	xmlns:p="http://primefaces.org/ui">
 
-<nav class="navbar navbar-dark cabecera">
- <span class="navbar-brand"><i class="fa faw fa-glass"></i><b class="text-sm">FRELATOS</b></span>
-</nav>
+<h:form>
+	<div class="container-fluid">
+		<div class="d-flex justify-content-between">
+			<div class="">
+				<i class="fa faw fa-glass"></i><b>FRELATOS</b>
+			</div>
+			<div class="">
+				<i class="fa fa-fw fa-user"></i>
+				<p:outputLabel value="#{usuario.sesionUsuario}" styleClass="text-uppercase font-weight-bold"/>
+			</div>
+			<div>
+				<p:clock />
+			</div>
+			<div class="">
+				<h:commandLink action="#{usuario.logout}" immediate="true"
+					title="CERRAR SESION" styleClass="text-white font-weight-bold">
+					<i class="fa fa-fw fa-sign-out"></i>
+					<p:outputLabel value=" SALIR " styleClass="text-white font-weight-bold" />
+				</h:commandLink>
+			</div>
+		</div>
+	</div>
+</h:form>
 </html>
