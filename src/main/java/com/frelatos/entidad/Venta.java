@@ -18,6 +18,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "tb_venta")
 @NamedQuery(name = "venta.listarVentas", query = "select v from Venta v")
@@ -41,53 +44,5 @@ public class Venta implements Serializable {
 
 	@OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
 	private List<DetalleVenta> detalles;
-
-	public int getNumVenta() {
-		return numVenta;
-	}
-
-	public void setNumVenta(int numVenta) {
-		this.numVenta = numVenta;
-	}
-
-	public Date getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-
-	public String getHora() {
-		return hora;
-	}
-
-	public void setHora(String hora) {
-		this.hora = hora;
-	}
-
-	public BigDecimal getTotal() {
-		return total;
-	}
-
-	public void setTotal(BigDecimal total) {
-		this.total = total;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public List<DetalleVenta> getDetalles() {
-		return detalles;
-	}
-
-	public void setDetalles(List<DetalleVenta> detalles) {
-		this.detalles = detalles;
-	}
 
 }

@@ -45,7 +45,9 @@ public class UsuarioDAO {
 			objUsuario.setClave("");
 			return objUsuario;
 		}
-
+		close();
 		return objUsuario;
+		
 	}
+
 }

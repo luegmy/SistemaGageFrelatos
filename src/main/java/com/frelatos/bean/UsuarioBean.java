@@ -1,15 +1,11 @@
 package com.frelatos.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
-import javax.faces.model.SelectItem;
 
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
@@ -48,6 +44,7 @@ public class UsuarioBean implements Serializable {
 			context.addMessage("mensajeLogin", new FacesMessage(FacesMessage.SEVERITY_INFO, "Clave incorrecta", null));
 			return login;
 		} else {
+			menu();
 			setSesionUsuario(objUsuario.getUsuario());
 			setSesionCodigoUsuario(objUsuario.getCodUsuario());
 			return "venta.xhtml?faces-redirect=true";
@@ -58,6 +55,32 @@ public class UsuarioBean implements Serializable {
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return login;
+	}
+
+	public void menu() {
+
+		DefaultSubMenu ventaSubmenu = new DefaultSubMenu("Venta");
+
+		DefaultMenuItem item = new DefaultMenuItem("Registrar");
+		item.setCommand("venta.xhtml");
+		item.setIcon("ui-icon-cart");
+		ventaSubmenu.addElement(item);
+
+		item = new DefaultMenuItem("Consultar");
+		item.setCommand("consultaVenta.xhtml");
+		item.setIcon("ui-icon-calculator");
+		ventaSubmenu.addElement(item);
+
+		modelo.addElement(ventaSubmenu);
+
+		DefaultSubMenu productoSubmenu = new DefaultSubMenu("Producto");
+		item = new DefaultMenuItem("Registrar");
+		item.setCommand("producto.xhtml");
+		item.setIcon("ui-icon-clipboard");
+		productoSubmenu.addElement(item);
+		
+		modelo.addElement(productoSubmenu);
+
 	}
 
 	public MenuModel getModelo() {

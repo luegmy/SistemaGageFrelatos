@@ -20,10 +20,10 @@
 			<property name="javax.persistence.jdbc.driver"
 				value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://buexzdaqnndyzz3crore-mysql.services.clever-cloud.com:3306/buexzdaqnndyzz3crore" />
-			<property name="javax.persistence.jdbc.user" value="u0n60ljfp3fznghg" />
+				value="jdbc:mysql://localhost:3306/bd_heladeria" />
+			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password"
-				value="EVjsyeE7jVKkcrLD8aij" />
+				value="admin" />
 			<property name="eclipselink.logging.level" value="FINE" />
 		</properties>
 

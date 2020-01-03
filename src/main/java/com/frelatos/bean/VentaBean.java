@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -88,6 +89,8 @@ public class VentaBean implements Serializable {
 	}
 
 	public void grabarVenta() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		
 		// formato para registrar la hora
 		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
 
@@ -101,7 +104,9 @@ public class VentaBean implements Serializable {
 		objVenta.setTotal(total);
 		objVenta.setDetalles(temporales);
 
-		daoV.registrarVenta(objVenta);
+		context.addMessage("mensajeVenta", new FacesMessage(FacesMessage.SEVERITY_INFO,daoV.registrarVenta(objVenta), null));
+		temporales.clear();
+		total=new BigDecimal("0.00");
 	}
 
 	void iterarLista() {
